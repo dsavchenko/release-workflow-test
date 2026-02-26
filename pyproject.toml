@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "helloworld"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
   "click"
 ]
@@ -28,7 +28,7 @@ classifiers = [
 hello = "helloworld:cli"
 
 [tool.bumpversion]
-current_version = "0.1.1"
+current_version = "0.1.2"
 parse = "(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)"
 serialize = ["{major}.{minor}.{patch}"]
 search = "{current_version}"
