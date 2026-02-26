@@ -1,3 +1,3 @@
 # release-workflow-test
 
-Current version: 0.0.9
+Current version: 0.1.0
