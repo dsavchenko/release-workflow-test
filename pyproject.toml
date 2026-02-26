@@ -1,0 +1,28 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "helloworld"
+version = "0.0.1"
+dependencies = [
+  "click"
+]
+requires-python = ">=3.11"
+authors = [
+  {name = "Denys Savchenko", email = "speleoden@gmail.com"},
+]
+maintainers = [
+  {name = "Denys Savchenko", email = "speleoden@gmail.com"},
+]
+description = "This is just a test"
+readme = "README.md"
+license = "MIT"
+
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python"
+]
+
+[project.scripts]
+hello = "helloworld:cli"
