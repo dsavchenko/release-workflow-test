@@ -22,7 +22,7 @@ permissions:
 jobs:
   bump:
     # Guard against infinite loop
-    if: "!contains(github.event.head_commit.message, 'chore: bump version')"
+    if: "!contains(github.event.head_commit.message, 'chore: bump version workflow ')"
     runs-on: ubuntu-latest
 
     steps:
@@ -45,7 +45,7 @@ jobs:
         run: |
           MSG="${{ steps.prtitle.outputs.title }}"
           
-          if ${{ github.event_name }} == "workflow_dispatch"; then
+          if "${{ github.event_name }}" == "workflow_dispatch"; then
             echo "type=${{ github.event.inputs.bump-type }}" >> $GITHUB_OUTPUT
           elif echo "$MSG" | grep -qE "BREAKING|!:"; then
             echo "type=major" >> $GITHUB_OUTPUT
@@ -71,7 +71,7 @@ jobs:
 
           BRANCH=version-bump/${{ github.run_id }}
           git checkout -b $BRANCH
-          git commit -am "chore: bump version"
+          git commit -am "chore: bump version workflow ${{ steps.bump.outputs.previous_version }} --> ${{ steps.bump.outputs.current_version }}"
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
           git push origin $BRANCH
         
@@ -80,7 +80,7 @@ jobs:
         id: pr
         run: |
           gh pr create \
-            --title "chore: bump version" \
+            --title "chore: bump version workflow ${{ steps.bump.outputs.previous_version }} --> ${{ steps.bump.outputs.current_version }}" \
             --body "Automated semantic version bump" \
             --base main
         env:
