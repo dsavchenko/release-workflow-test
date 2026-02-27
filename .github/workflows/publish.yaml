@@ -33,9 +33,8 @@ jobs:
 
       - name: Build package
         run: uv build
-
-      - name: Publish to TestPyPI
-        run: |
-          uv publish \
-            --repository-url https://test.pypi.org/legacy/ \
-            --token ${{ secrets.TESTPYPI_TOKEN }}
+      - name: Publish package to TestPyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+          password: ${{ secrets.TESTPYPI_TOKEN }}
