@@ -2,7 +2,7 @@ name: Tag release
 
 on:
   push:
-    branches: [master]
+    branches: [main]
 
 permissions:
   contents: write
